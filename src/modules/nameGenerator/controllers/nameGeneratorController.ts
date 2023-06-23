@@ -15,7 +15,7 @@ export class NameGeneratorController {
             const names = await this.nameGeneratorService.generateNames(options);
             reply.send(names);
         } catch (error) {
-            reply.status(500).send({ error: 'Internal Server Error' });
+            reply.status(500).send({ error: 'Controller: Internal Server Error' });
         }
     }
 }
