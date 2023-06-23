@@ -9,6 +9,8 @@ export function nameGenerator(app: FastifyInstance) {
         try {
             const options: Options = request.query as Options;
 
+            console.log(options);
+
             const names = await nameGeneratorController.getNames(options, request, reply);
             reply.send(names);
         } catch (error) {

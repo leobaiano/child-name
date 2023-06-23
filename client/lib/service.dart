@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String apiUrl = 'https://api.example.com';
+  static const String apiUrl = 'http://10.0.2.2:3000';
 
   Future<Map<String, dynamic>> fetchData(String country, String gender, String musicStyle, String movieCategory) async {
     final queryParams = {
@@ -13,11 +13,12 @@ class ApiService {
     };
     
     final url = Uri.parse('$apiUrl/names').replace(queryParameters: queryParams);
+
+    print(url);
     
     final response = await http.get(url);
     
     if (response.statusCode == 200) {
-      // Parse a resposta JSON para um mapa
       Map<String, dynamic> data = json.decode(response.body);
       return data;
     } else {
