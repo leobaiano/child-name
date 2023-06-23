@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:childnames/service.dart';
 
 void main() => runApp(const ChildName());
 
@@ -10,11 +12,14 @@ class ChildName extends StatefulWidget {
 }
 
 class _ChildNameState extends State<ChildName> {
+  final ApiService apiService = ApiService();
+
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _genderController = TextEditingController();
   final TextEditingController _musicStyleController = TextEditingController();
-  final TextEditingController _movieCategoryController = TextEditingController();
+  final TextEditingController _movieCategoryController =
+      TextEditingController();
 
   @override
   void dispose() {
@@ -39,7 +44,7 @@ class _ChildNameState extends State<ChildName> {
               title: const Text("Suggestion for children's names"),
             ),
             body: SingleChildScrollView(
-              child: Form(
+                child: Form(
               key: _formKey,
               child: Padding(
                   padding:
@@ -149,12 +154,14 @@ class _ChildNameState extends State<ChildName> {
                           child: ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                // Navigate the user to the Home page
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text('Please fill input')),
-                                );
+                                final country = _countryController.text;
+                                final gender = _genderController.text;
+                                final musicStyle = _musicStyleController.text;
+                                final movieCategory =
+                                    _movieCategoryController.text;
+
+                                fetchDataFromApi(
+                                    country, gender, musicStyle, movieCategory);
                               }
                             },
                             child: const Text('Submit'),
@@ -164,5 +171,17 @@ class _ChildNameState extends State<ChildName> {
                     ],
                   )),
             ))));
+  }
+
+  void fetchDataFromApi(country, gender, musicStyle, movieCategory) async {
+    try {
+      Map<String, dynamic> data = await apiService.fetchData(
+          country, gender, musicStyle, movieCategory);
+      // Faça algo com os dados retornados da API
+      print(data);
+    } catch (e) {
+      // Lida com o erro da requisição
+      print('Erro na chamada da API: $e');
+    }
   }
 }
