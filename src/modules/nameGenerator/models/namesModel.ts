@@ -1,3 +1,3 @@
 export interface Names {
-    names: string,
+    names: Object,
 }
