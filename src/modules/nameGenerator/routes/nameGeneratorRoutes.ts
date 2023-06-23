@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 import { NameGenerator } from '../controllers/nameGeneratorController';
-import { Names } from '../models/optionsModel';
+import { Names } from '../models/namesModel';
 
 export function exampleRoutes(app: FastifyInstance) {
     app.get('/names', async (request: FastifyRequest, reply: FastifyReply) => {
