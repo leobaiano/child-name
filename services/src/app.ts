@@ -8,7 +8,7 @@ nameGenerator(app);
 const start = async () => {
     try {
       await app.ready();
-      await app.listen({ port: 3000 });
+      await app.listen({ port: 3000, host: '0.0.0.0' });
       console.log('Servidor rodando na porta 3000');
     } catch (err) {
       console.error(err);
