@@ -12,6 +12,9 @@ export function nameGenerator(app: FastifyInstance) {
             console.log(options);
 
             const names = await nameGeneratorController.getNames(options, request, reply);
+
+            console.log(names);
+
             reply.send(names);
         } catch (error) {
             reply.status(500).send({ error: 'Route: Internal Server Error' });

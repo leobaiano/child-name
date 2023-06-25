@@ -12,7 +12,6 @@ class Response extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(names);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

@@ -21,7 +21,7 @@ class _ChildNameState extends State<ChildName> {
   final TextEditingController _movieCategoryController =
       TextEditingController();
   bool _haveSuggestions = false;
-  late final List<Map<String, Object>> _names;
+  late List<Map<String, Object>> _names;
 
   @override
   void dispose() {
@@ -201,8 +201,8 @@ class _ChildNameState extends State<ChildName> {
         };
       }).toList();
 
-      _names = names;
       setState(() {
+        _names = names;
         _haveSuggestions = true;
       });
 
