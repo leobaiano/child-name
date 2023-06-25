@@ -172,7 +172,16 @@ class _ChildNameState extends State<ChildName> {
                                           musicStyle, movieCategory);
                                     }
                                   },
-                                  child: const Text('Submit'),
+                                  style: TextButton.styleFrom(
+                                    minimumSize: const Size(300, 10),
+                                    backgroundColor: Colors.blue,
+                                    padding: const EdgeInsets.all(20),
+                                    foregroundColor: Colors.white,
+                                  ),
+                                  child: const Text(
+                                    'Submit',
+                                    style: TextStyle(fontSize: 22),
+                                  ),
                                 ),
                               ),
                             ),
@@ -196,8 +205,8 @@ class _ChildNameState extends State<ChildName> {
       setState(() {
         _haveSuggestions = true;
       });
-      // Faça algo com os dados retornados da API
-      print(data);
+
+      _formKey.currentState!.reset();
     } catch (e) {
       // Lida com o erro da requisição
       print('Erro na chamada da API: $e');

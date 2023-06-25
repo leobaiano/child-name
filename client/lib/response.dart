@@ -12,16 +12,28 @@ class Response extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    print('Names: $names');
+    print(names);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Center(
-          child: Text(
-            'Response',
-            style: TextStyle(fontSize: 20),
+        const SizedBox(height: 20),
+        Expanded(
+          child: ListView.builder(
+            itemCount: names.length,
+            itemBuilder: (BuildContext context, int index) {
+              final nameMap = names[index];
+              final nameList = nameMap['names'] as List<dynamic>;
+              final nameStrings =
+                  nameList.map((name) => name.toString()).toList();
+
+              return ListTile(
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: nameStrings.map((name) => Text(name)).toList(),
+                ),
+              );
+            },
           ),
         ),
         TextButton(
